@@ -10,9 +10,12 @@ namespace IMedicalB.Controllers
     {
         private readonly IWeatherService _weatherService;
 
-        public WeatherController(IWeatherService weatherService)
+        private readonly ICityInfoService _cityinfoService;
+
+        public WeatherController(IWeatherService weatherService, ICityInfoService cityinfoService)
         {
             _weatherService = weatherService;
+            _cityinfoService = cityinfoService;
         }
 
         [HttpGet("cities")]
@@ -23,11 +26,26 @@ namespace IMedicalB.Controllers
         }
 
         [HttpGet("city/{name}")]
-        public async Task<IActionResult> GetWeatherByCity(string name)
+        public async Task<IActionResult> GetWeatherByCityAsync(string name)
         {
             var result = await _weatherService.GetWeatherByCityAsync(name);
             if (result == null) return NotFound();
             return Ok(result);
+        }
+
+        [HttpPost("insert")]
+        public async Task<IActionResult> InsertCityWeather([FromBody] CityInfo cityInfo)
+        {
+            await _cityinfoService.InsertCityInfoAsync(cityInfo);
+            return Ok("Historial insertado correctamente.");
+        }
+
+        [HttpPost("consult")]
+        public async Task<IActionResult> ConsultHistoryInfoAsync()
+        {
+            var history = await _cityinfoService.ConsultHistoryInfoAsync();
+
+            return Ok(new { history });
         }
     }
 }

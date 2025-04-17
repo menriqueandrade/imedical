@@ -12,6 +12,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddScoped<IWeatherService, WeatherService>();
 builder.Services.AddHttpClient<IWeatherService, WeatherService>();
+builder.Services.AddScoped<ICityInfoService, CityInfoService>();
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();

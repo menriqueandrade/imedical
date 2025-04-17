@@ -39,6 +39,49 @@
         }
       }
     },
+    "/api/Weather/insert": {
+      "post": {
+        "tags": [
+          "Weather"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CityInfo"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CityInfo"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CityInfo"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Weather/consult": {
+      "post": {
+        "tags": [
+          "Weather"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/WeatherForecast": {
       "get": {
         "tags": [
@@ -81,6 +124,90 @@
   },
   "components": {
     "schemas": {
+      "CityInfo": {
+        "type": "object",
+        "properties": {
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "current_Weather": {
+            "$ref": "#/components/schemas/CurrentWeather"
+          },
+          "news": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NewsItem"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CurrentWeather": {
+        "type": "object",
+        "properties": {
+          "temp": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "humidity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "condition": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "wind_Speed": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "wind_Direction": {
+            "type": "string",
+            "nullable": true
+          },
+          "feels_Like": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NewsItem": {
+        "type": "object",
+        "properties": {
+          "author": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          },
+          "urlToImage": {
+            "type": "string",
+            "nullable": true
+          },
+          "publishedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
       "WeatherForecast": {
         "type": "object",
         "properties": {

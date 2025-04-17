@@ -7,13 +7,16 @@ namespace IMedicalB.Service
     {
         private readonly HttpClient _httpClient;
 
-        public WeatherService(HttpClient httpClient)
+        private readonly ICityInfoService _cityInfoService;
+
+        public WeatherService(HttpClient httpClient, ICityInfoService cityInfoService)
         {
             _httpClient = httpClient;
+            _cityInfoService = cityInfoService;
         }
 
         public async Task<List<CityInfo>?> GetWeatherDataAsync()
-        {
+        {                                             
             var response = await _httpClient.GetAsync("https://68012dd781c7e9fbcc41c722.mockapi.io/api/v1/weather/cityweather");
             response.EnsureSuccessStatusCode();
 
@@ -28,8 +31,19 @@ namespace IMedicalB.Service
 
         public async Task<CityInfo?> GetWeatherByCityAsync(string cityName)
         {
+
             var allData = await GetWeatherDataAsync();
-            return allData.FirstOrDefault(c => c.City.Equals(cityName, StringComparison.OrdinalIgnoreCase));
+
+            var cityData = allData?.FirstOrDefault(c => c.City.Equals(cityName, StringComparison.OrdinalIgnoreCase));
+
+            if (cityData == null)
+            {
+                return null;  
+            }
+
+            await _cityInfoService.InsertCityInfoAsync(cityData);
+
+            return cityData;
         }
     }
 }

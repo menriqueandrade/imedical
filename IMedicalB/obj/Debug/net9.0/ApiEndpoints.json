@@ -11,7 +11,7 @@
   },
   {
     "ContainingType": "IMedicalB.Controllers.WeatherController",
-    "Method": "GetWeatherByCity",
+    "Method": "GetWeatherByCityAsync",
     "RelativePath": "api/Weather/city/{name}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -20,6 +20,32 @@
       {
         "Name": "name",
         "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "IMedicalB.Controllers.WeatherController",
+    "Method": "ConsultHistoryInfoAsync",
+    "RelativePath": "api/Weather/consult",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "IMedicalB.Controllers.WeatherController",
+    "Method": "InsertCityWeather",
+    "RelativePath": "api/Weather/insert",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cityInfo",
+        "Type": "IMedicalB.Model.CityInfo",
         "IsRequired": true
       }
     ],
