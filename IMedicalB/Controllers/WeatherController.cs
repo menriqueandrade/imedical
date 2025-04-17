@@ -15,11 +15,19 @@ namespace IMedicalB.Controllers
             _weatherService = weatherService;
         }
 
-        [HttpGet]
-        public IActionResult GetWeather()
+        [HttpGet("cities")]
+        public async Task<IActionResult> GetAllWeather()
         {
-            var weather = _weatherService.GetWeather();
-            return Ok(weather);
+            var result = await _weatherService.GetWeatherDataAsync();
+            return Ok(result);
+        }
+
+        [HttpGet("city/{name}")]
+        public async Task<IActionResult> GetWeatherByCity(string name)
+        {
+            var result = await _weatherService.GetWeatherByCityAsync(name);
+            if (result == null) return NotFound();
+            return Ok(result);
         }
     }
 }

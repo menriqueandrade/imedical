@@ -1,12 +1,28 @@
 [
   {
     "ContainingType": "IMedicalB.Controllers.WeatherController",
-    "Method": "GetWeather",
-    "RelativePath": "api/Weather",
+    "Method": "GetAllWeather",
+    "RelativePath": "api/Weather/cities",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "IMedicalB.Controllers.WeatherController",
+    "Method": "GetWeatherByCity",
+    "RelativePath": "api/Weather/city/{name}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "name",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {

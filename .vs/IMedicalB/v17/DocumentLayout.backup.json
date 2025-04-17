@@ -1,7 +1,40 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\manef\\OneDrive\\Desktop\\imedical\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{86ED0659-9024-4E0C-BCD4-A64F0B962031}|IMedicalB\\IMedicalB.csproj|c:\\users\\manef\\onedrive\\desktop\\imedical\\imedicalb\\controllers\\weathercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86ED0659-9024-4E0C-BCD4-A64F0B962031}|IMedicalB\\IMedicalB.csproj|solutionrelative:imedicalb\\controllers\\weathercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86ED0659-9024-4E0C-BCD4-A64F0B962031}|IMedicalB\\IMedicalB.csproj|c:\\users\\manef\\onedrive\\desktop\\imedical\\imedicalb\\service\\weatherservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86ED0659-9024-4E0C-BCD4-A64F0B962031}|IMedicalB\\IMedicalB.csproj|solutionrelative:imedicalb\\service\\weatherservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86ED0659-9024-4E0C-BCD4-A64F0B962031}|IMedicalB\\IMedicalB.csproj|c:\\users\\manef\\onedrive\\desktop\\imedical\\imedicalb\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86ED0659-9024-4E0C-BCD4-A64F0B962031}|IMedicalB\\IMedicalB.csproj|solutionrelative:imedicalb\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86ED0659-9024-4E0C-BCD4-A64F0B962031}|IMedicalB\\IMedicalB.csproj|c:\\users\\manef\\onedrive\\desktop\\imedical\\imedicalb\\service\\\uFEFFiweatherservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86ED0659-9024-4E0C-BCD4-A64F0B962031}|IMedicalB\\IMedicalB.csproj|solutionrelative:imedicalb\\service\\\uFEFFiweatherservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86ED0659-9024-4E0C-BCD4-A64F0B962031}|IMedicalB\\IMedicalB.csproj|c:\\users\\manef\\onedrive\\desktop\\imedical\\imedicalb\\model\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86ED0659-9024-4E0C-BCD4-A64F0B962031}|IMedicalB\\IMedicalB.csproj|solutionrelative:imedicalb\\model\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86ED0659-9024-4E0C-BCD4-A64F0B962031}|IMedicalB\\IMedicalB.csproj|c:\\users\\manef\\onedrive\\desktop\\imedical\\imedicalb\\model\\newsitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86ED0659-9024-4E0C-BCD4-A64F0B962031}|IMedicalB\\IMedicalB.csproj|solutionrelative:imedicalb\\model\\newsitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86ED0659-9024-4E0C-BCD4-A64F0B962031}|IMedicalB\\IMedicalB.csproj|c:\\users\\manef\\onedrive\\desktop\\imedical\\imedicalb\\model\\currentweather.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86ED0659-9024-4E0C-BCD4-A64F0B962031}|IMedicalB\\IMedicalB.csproj|solutionrelative:imedicalb\\model\\currentweather.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86ED0659-9024-4E0C-BCD4-A64F0B962031}|IMedicalB\\IMedicalB.csproj|c:\\users\\manef\\onedrive\\desktop\\imedical\\imedicalb\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86ED0659-9024-4E0C-BCD4-A64F0B962031}|IMedicalB\\IMedicalB.csproj|solutionrelative:imedicalb\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +42,115 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 5,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "WeatherForecast.cs",
+              "DocumentMoniker": "C:\\Users\\manef\\OneDrive\\Desktop\\imedical\\IMedicalB\\Model\\WeatherForecast.cs",
+              "RelativeDocumentMoniker": "IMedicalB\\Model\\WeatherForecast.cs",
+              "ToolTip": "C:\\Users\\manef\\OneDrive\\Desktop\\imedical\\IMedicalB\\Model\\WeatherForecast.cs",
+              "RelativeToolTip": "IMedicalB\\Model\\WeatherForecast.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T18:49:53.136Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "WeatherForecastController.cs",
+              "DocumentMoniker": "C:\\Users\\manef\\OneDrive\\Desktop\\imedical\\IMedicalB\\Controllers\\WeatherForecastController.cs",
+              "RelativeDocumentMoniker": "IMedicalB\\Controllers\\WeatherForecastController.cs",
+              "ToolTip": "C:\\Users\\manef\\OneDrive\\Desktop\\imedical\\IMedicalB\\Controllers\\WeatherForecastController.cs",
+              "RelativeToolTip": "IMedicalB\\Controllers\\WeatherForecastController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T18:49:53.635Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CurrentWeather.cs",
+              "DocumentMoniker": "C:\\Users\\manef\\OneDrive\\Desktop\\imedical\\IMedicalB\\Model\\CurrentWeather.cs",
+              "RelativeDocumentMoniker": "IMedicalB\\Model\\CurrentWeather.cs",
+              "ToolTip": "C:\\Users\\manef\\OneDrive\\Desktop\\imedical\\IMedicalB\\Model\\CurrentWeather.cs",
+              "RelativeToolTip": "IMedicalB\\Model\\CurrentWeather.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T18:44:40.383Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "NewsItem.cs",
+              "DocumentMoniker": "C:\\Users\\manef\\OneDrive\\Desktop\\imedical\\IMedicalB\\Model\\NewsItem.cs",
+              "RelativeDocumentMoniker": "IMedicalB\\Model\\NewsItem.cs",
+              "ToolTip": "C:\\Users\\manef\\OneDrive\\Desktop\\imedical\\IMedicalB\\Model\\NewsItem.cs",
+              "RelativeToolTip": "IMedicalB\\Model\\NewsItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T18:44:02.562Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "WeatherController.cs",
+              "DocumentMoniker": "C:\\Users\\manef\\OneDrive\\Desktop\\imedical\\IMedicalB\\Controllers\\WeatherController.cs",
+              "RelativeDocumentMoniker": "IMedicalB\\Controllers\\WeatherController.cs",
+              "ToolTip": "C:\\Users\\manef\\OneDrive\\Desktop\\imedical\\IMedicalB\\Controllers\\WeatherController.cs",
+              "RelativeToolTip": "IMedicalB\\Controllers\\WeatherController.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAYwBgAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T17:59:33.768Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "\uFEFFIWeatherService.cs",
+              "DocumentMoniker": "C:\\Users\\manef\\OneDrive\\Desktop\\imedical\\IMedicalB\\Service\\\uFEFFIWeatherService.cs",
+              "RelativeDocumentMoniker": "IMedicalB\\Service\\\uFEFFIWeatherService.cs",
+              "ToolTip": "C:\\Users\\manef\\OneDrive\\Desktop\\imedical\\IMedicalB\\Service\\\uFEFFIWeatherService.cs",
+              "RelativeToolTip": "IMedicalB\\Service\\\uFEFFIWeatherService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T17:59:07.277Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "WeatherService.cs",
+              "DocumentMoniker": "C:\\Users\\manef\\OneDrive\\Desktop\\imedical\\IMedicalB\\Service\\WeatherService.cs",
+              "RelativeDocumentMoniker": "IMedicalB\\Service\\WeatherService.cs",
+              "ToolTip": "C:\\Users\\manef\\OneDrive\\Desktop\\imedical\\IMedicalB\\Service\\WeatherService.cs",
+              "RelativeToolTip": "IMedicalB\\Service\\WeatherService.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAgwBsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T17:56:56.109Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\manef\\OneDrive\\Desktop\\imedical\\IMedicalB\\Program.cs",
+              "RelativeDocumentMoniker": "IMedicalB\\Program.cs",
+              "ToolTip": "C:\\Users\\manef\\OneDrive\\Desktop\\imedical\\IMedicalB\\Program.cs",
+              "RelativeToolTip": "IMedicalB\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T18:02:30.49Z",
+              "EditorCaption": ""
             }
           ]
         }

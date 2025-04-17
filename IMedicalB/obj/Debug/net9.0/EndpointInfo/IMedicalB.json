@@ -5,10 +5,32 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/Weather": {
+    "/api/Weather/cities": {
       "get": {
         "tags": [
           "Weather"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Weather/city/{name}": {
+      "get": {
+        "tags": [
+          "Weather"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "responses": {
           "200": {

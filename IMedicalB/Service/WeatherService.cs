@@ -1,23 +1,35 @@
-﻿using IMedicalB.Model;
+﻿using System.Text.Json;
+using IMedicalB.Model;
 
 namespace IMedicalB.Service
 {
     public class WeatherService : IWeatherService
     {
+        private readonly HttpClient _httpClient;
 
-        public Weather GetWeather()
+        public WeatherService(HttpClient httpClient)
         {
-            
-            return new Weather
+            _httpClient = httpClient;
+        }
+
+        public async Task<List<CityInfo>?> GetWeatherDataAsync()
+        {
+            var response = await _httpClient.GetAsync("https://68012dd781c7e9fbcc41c722.mockapi.io/api/v1/weather/cityweather");
+            response.EnsureSuccessStatusCode();
+
+            var content = await response.Content.ReadAsStringAsync();
+            var data = JsonSerializer.Deserialize<List<CityInfo>>(content, new JsonSerializerOptions
             {
-                Id = "1",
-                City = "New York",
-                Temp = 18,
-                Humidity = 65,
-                Condition = "Partly Cloudy",
-                Country = "US",
-                Info = "Feels like 16°C. Wind: 15 km/h NE. Expect scattered showers in the afternoon."
-            };
+                PropertyNameCaseInsensitive = true
+            });
+
+            return data;
+        }
+
+        public async Task<CityInfo?> GetWeatherByCityAsync(string cityName)
+        {
+            var allData = await GetWeatherDataAsync();
+            return allData.FirstOrDefault(c => c.City.Equals(cityName, StringComparison.OrdinalIgnoreCase));
         }
     }
 }
