@@ -3,6 +3,8 @@ using System.Text.Json;
 using Dapper;
 using System.Data.SqlClient;
 using IMedicalB.Dto;
+using IMedicalB.Sql;
+using Microsoft.Extensions.Options;
 
 
 namespace IMedicalB.Service
@@ -10,10 +12,12 @@ namespace IMedicalB.Service
     public class CityInfoService : ICityInfoService
     {
         private readonly string _connectionString;
+        private readonly SqlQueries _sqlQueries;
 
-        public CityInfoService(IConfiguration configuration)
+        public CityInfoService(IConfiguration configuration, IOptions<SqlQueries> sqlOptions)
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection");
+            _sqlQueries = sqlOptions.Value;
         }
 
 
@@ -22,8 +26,7 @@ namespace IMedicalB.Service
         {
             using var connection = new SqlConnection(_connectionString);
 
-            string query = "INSERT INTO IMedical.dbo.weatherhistory (city, info, date_register) " +
-                           "VALUES (@CityData, @Info, GETDATE())";
+            string query = _sqlQueries.InsertCityInfo;
 
             var parameters = new
             {
@@ -38,7 +41,7 @@ namespace IMedicalB.Service
         {
             using var connection = new SqlConnection(_connectionString);
 
-            string query = "SELECT city, info FROM IMedical.dbo.weatherhistory";
+            string query = _sqlQueries.SelectCityHistory;
 
             var result = await connection.QueryAsync<CityHistoryDto>(query);
 

@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using IMedicalB.Model;
+using Microsoft.Extensions.Options;
 
 namespace IMedicalB.Service
 {
@@ -9,15 +10,18 @@ namespace IMedicalB.Service
 
         private readonly ICityInfoService _cityInfoService;
 
-        public WeatherService(HttpClient httpClient, ICityInfoService cityInfoService)
+        private readonly ApiEndpoints _endpoints;
+
+        public WeatherService(HttpClient httpClient, ICityInfoService cityInfoService, IOptions<ApiEndpoints> options)
         {
             _httpClient = httpClient;
             _cityInfoService = cityInfoService;
+            _endpoints = options.Value;
         }
 
         public async Task<List<CityInfo>?> GetWeatherDataAsync()
         {                                             
-            var response = await _httpClient.GetAsync("https://68012dd781c7e9fbcc41c722.mockapi.io/api/v1/weather/cityweather");
+            var response = await _httpClient.GetAsync(_endpoints.CityWeather);
             response.EnsureSuccessStatusCode();
 
             var content = await response.Content.ReadAsStringAsync();

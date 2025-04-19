@@ -1,4 +1,6 @@
+using IMedicalB.Model;
 using IMedicalB.Service;
+using IMedicalB.Sql;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +15,9 @@ builder.Services.AddControllers();
 builder.Services.AddScoped<IWeatherService, WeatherService>();
 builder.Services.AddHttpClient<IWeatherService, WeatherService>();
 builder.Services.AddScoped<ICityInfoService, CityInfoService>();
+builder.Services.Configure<ApiEndpoints>(builder.Configuration.GetSection("ApiEndpoints"));
+builder.Services.Configure<SqlQueries>(builder.Configuration.GetSection("SqlQueries"));
+
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();

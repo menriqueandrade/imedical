@@ -8,6 +8,8 @@ using System.Web.UI;
 using IMedicalB.Dto;
 using System.Linq;
 using IMedical.F.Model;
+using System.Configuration;
+
 
 namespace IMedical.F.Views
 {
@@ -33,7 +35,7 @@ namespace IMedical.F.Views
                 client.Encoding = System.Text.Encoding.UTF8;
                 try
                 {
-                    string url = "https://localhost:7206/api/Weather/cities";
+                    string url = ConfigurationManager.AppSettings["ApiUrl_Cities"];
                     var json = await client.DownloadStringTaskAsync(url);
                     return JsonConvert.DeserializeObject<List<CityInfo>>(json) ?? new List<CityInfo>();
                 }
@@ -53,7 +55,7 @@ namespace IMedical.F.Views
 
                 try
                 {
-                    string url = "https://localhost:7206/api/Weather/consult";
+                    string url = ConfigurationManager.AppSettings["ApiUrl_Consult"];
                     client.Headers[HttpRequestHeader.ContentType] = "application/json";
                     string body = "{}"; 
 
@@ -82,7 +84,8 @@ namespace IMedical.F.Views
                 client.Encoding = System.Text.Encoding.UTF8;
                 try
                 {
-                    string url = $"https://localhost:7206/api/Weather/city/{Uri.EscapeDataString(ciudad)}";
+                    string formato = ConfigurationManager.AppSettings["ApiUrl_UpdateCity"];
+                    string url = string.Format(formato, Uri.EscapeDataString(ciudad));
                     var json = await client.DownloadStringTaskAsync(url);
 
                 }
@@ -129,7 +132,7 @@ namespace IMedical.F.Views
             {
                 RegisterAsyncTask(new PageAsyncTask(async () =>
                 {
-                    var ciudades = await BuscarCiudadEnApi(ciudadBuscada);
+                    var ciudades = await SearchCityApi(ciudadBuscada);
                     CityGrid.DataSource = ciudades;
                     CityGrid.DataBind();
                 }));
@@ -158,7 +161,7 @@ namespace IMedical.F.Views
             }));
         }
 
-        private async Task<List<CityInfo>> BuscarCiudadEnApi(string name)
+        private async Task<List<CityInfo>> SearchCityApi(string name)
         {
             using (var client = new WebClient())
             {
@@ -167,13 +170,14 @@ namespace IMedical.F.Views
                 {
                     
                     string ciudadCodificada = Uri.EscapeDataString(name);
-                    string url = $"https://localhost:7206/api/Weather/city/bar/{ciudadCodificada}";
+                    string formato = ConfigurationManager.AppSettings["ApiUrl_SearchCity"];
+                    string url = string.Format(formato, ciudadCodificada);
 
                     var json = await client.DownloadStringTaskAsync(url);
-                    var ciudadEncontrada = JsonConvert.DeserializeObject<CityInfo>(json);
+                    var city = JsonConvert.DeserializeObject<CityInfo>(json);
 
                     
-                    return ciudadEncontrada != null ? new List<CityInfo> { ciudadEncontrada } : new List<CityInfo>();
+                    return city != null ? new List<CityInfo> { city } : new List<CityInfo>();
                 }
                 catch (WebException ex)
                 {
