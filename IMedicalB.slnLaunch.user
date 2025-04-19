@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "Nuevo perfil",
+    "Projects": [
+      {
+        "Path": "IMedicalB\\IMedicalB.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "IMedical.F\\IMedical.F.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
