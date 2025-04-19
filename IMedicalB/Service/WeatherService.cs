@@ -45,5 +45,19 @@ namespace IMedicalB.Service
 
             return cityData;
         }
+
+        public async Task<CityInfo?> GetWeatherByCitySearhBarAsync(string cityName)
+        {
+            var allData = await GetWeatherDataAsync();
+
+            var cityData = allData?.FirstOrDefault(c => c.City.Equals(cityName, StringComparison.OrdinalIgnoreCase));
+
+            if (cityData == null)
+            {
+                return null;
+            }
+
+            return cityData;
+        }
     }
 }

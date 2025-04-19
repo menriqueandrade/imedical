@@ -242,6 +242,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\CityHistoryDto.cs" />
+    <Compile Include="Model\CityHistoryResponse.cs" />
     <Compile Include="Model\CityInfo.cs" />
     <Compile Include="Model\CurrentWeather.cs" />
     <Compile Include="Model\NewsItem.cs" />

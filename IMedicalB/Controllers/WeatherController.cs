@@ -33,6 +33,16 @@ namespace IMedicalB.Controllers
             return Ok(result);
         }
 
+        [HttpGet("city/bar/{name}")]
+        public async Task<IActionResult> GetWeatherByCitySearhBarAsync(string name)
+        {
+            var result = await _weatherService.GetWeatherByCitySearhBarAsync(name);
+            if (result == null) return NotFound();
+            return Ok(result);
+        }
+
+        
+
         [HttpPost("insert")]
         public async Task<IActionResult> InsertCityWeather([FromBody] CityInfo cityInfo)
         {

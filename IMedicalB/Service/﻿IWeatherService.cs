@@ -7,5 +7,7 @@ namespace IMedicalB.Service
         Task<List<CityInfo>?> GetWeatherDataAsync();
 
         Task<CityInfo?> GetWeatherByCityAsync(string cityName);
+
+        Task<CityInfo?> GetWeatherByCitySearhBarAsync(string cityName);
     }
 }

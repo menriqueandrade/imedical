@@ -5,8 +5,9 @@ using IMedicalB.Model;
 using Newtonsoft.Json;
 using System.Net;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.Services;
+using IMedicalB.Dto;
+using System.Linq;
+using IMedical.F.Model;
 
 namespace IMedical.F.Views
 {
@@ -16,7 +17,8 @@ namespace IMedical.F.Views
         {
             if (!IsPostBack)
             {
-                RegisterAsyncTask(new PageAsyncTask(async () => {
+                RegisterAsyncTask(new PageAsyncTask(async () =>
+                {
                     var cities = await GetCitiesFromApi();
                     CityGrid.DataSource = cities;
                     CityGrid.DataBind();
@@ -37,21 +39,162 @@ namespace IMedical.F.Views
                 }
                 catch (WebException)
                 {
-                    // Puedes agregar logging del error aquí
                     return new List<CityInfo>();
                 }
             }
         }
 
-        protected void btnActualizar_Click(object sender, EventArgs e)
+
+        private async Task<List<CityHistoryDto>> GetCityHistoryFromApi()
+        {
+            using (var client = new WebClient())
+            {
+                client.Encoding = System.Text.Encoding.UTF8;
+
+                try
+                {
+                    string url = "https://localhost:7206/api/Weather/consult";
+                    client.Headers[HttpRequestHeader.ContentType] = "application/json";
+                    string body = "{}"; 
+
+                    var json = await client.UploadStringTaskAsync(url, "POST", body);
+
+                    
+                    var response = JsonConvert.DeserializeObject<CityHistoryResponse>(json);
+                    return response?.History ?? new List<CityHistoryDto>();
+                }
+                catch (WebException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return new List<CityHistoryDto>(); 
+                }
+            }
+        }
+
+     
+        protected async void btnActualizar_Click(object sender, EventArgs e)
         {
             string ciudad = HiddenCity.Value;
             string condicion = HiddenCondition.Value;
 
-            // Ahora podés usar estos valores como necesites
-            // Por ejemplo:
-            Console.WriteLine($"Actualizando ciudad: {ciudad}, condición: {condicion}");
+            using (var client = new WebClient())
+            {
+                client.Encoding = System.Text.Encoding.UTF8;
+                try
+                {
+                    string url = $"https://localhost:7206/api/Weather/city/{Uri.EscapeDataString(ciudad)}";
+                    var json = await client.DownloadStringTaskAsync(url);
+
+                }
+                catch (WebException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
         }
 
+        protected async void btnVerHistorial_Click(object sender, EventArgs e)
+        {
+            var historial = await GetCityHistoryFromApi();
+
+            if (historial.Any())
+            {
+                litHistorial.Text = "<ul class='list-group'>";
+                foreach (var item in historial)
+                {
+                    litHistorial.Text += $"<li class='list-group-item'><strong>{item.City}</strong>: {item.Info}</li>";
+                }
+                litHistorial.Text += "</ul>";
+            }
+            else
+            {
+                litHistorial.Text = "<div class='alert alert-info'>No hay historial disponible.</div>";
+            }
+
+            // Mostrar modal con JavaScript
+            ScriptManager.RegisterStartupScript(this, GetType(), "mostrarHistorial", @"
+    window.addEventListener('DOMContentLoaded', function() {
+        var modal = new bootstrap.Modal(document.getElementById('historyModal'));
+        modal.show();
+    });
+", true);
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+
+            string ciudadBuscada = txtBuscarCiudad.Text.Trim();
+
+            if (!string.IsNullOrEmpty(ciudadBuscada))
+            {
+                RegisterAsyncTask(new PageAsyncTask(async () =>
+                {
+                    var ciudades = await BuscarCiudadEnApi(ciudadBuscada);
+                    CityGrid.DataSource = ciudades;
+                    CityGrid.DataBind();
+                }));
+            }
+            else
+            {
+
+                RegisterAsyncTask(new PageAsyncTask(async () =>
+                {
+                    var cities = await GetCitiesFromApi();
+                    CityGrid.DataSource = cities;
+                    CityGrid.DataBind();
+                }));
+            }
+        }
+
+        protected void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtBuscarCiudad.Text = string.Empty;
+            
+            RegisterAsyncTask(new PageAsyncTask(async () =>
+            {
+                var cities = await GetCitiesFromApi();
+                CityGrid.DataSource = cities;
+                CityGrid.DataBind();
+            }));
+        }
+
+        private async Task<List<CityInfo>> BuscarCiudadEnApi(string name)
+        {
+            using (var client = new WebClient())
+            {
+                client.Encoding = System.Text.Encoding.UTF8;
+                try
+                {
+                    
+                    string ciudadCodificada = Uri.EscapeDataString(name);
+                    string url = $"https://localhost:7206/api/Weather/city/bar/{ciudadCodificada}";
+
+                    var json = await client.DownloadStringTaskAsync(url);
+                    var ciudadEncontrada = JsonConvert.DeserializeObject<CityInfo>(json);
+
+                    
+                    return ciudadEncontrada != null ? new List<CityInfo> { ciudadEncontrada } : new List<CityInfo>();
+                }
+                catch (WebException ex)
+                {
+                    // Manejo de errores específicos
+                    if (ex.Response is HttpWebResponse response && response.StatusCode == HttpStatusCode.NotFound)
+                    {
+                        // Ciudad no encontrada
+                        ScriptManager.RegisterStartupScript(this, GetType(), "showAlert",
+                            "alert('La ciudad especificada no fue encontrada.');", true);
+                    }
+                    else
+                    {
+                        // Otro tipo de error
+                        ScriptManager.RegisterStartupScript(this, GetType(), "showAlert",
+                            "alert('Error al conectar con el servicio de búsqueda.');", true);
+                    }
+
+                    return new List<CityInfo>();
+                }
+            }
+        }
     }
-}
+
+    }

@@ -27,6 +27,22 @@
   },
   {
     "ContainingType": "IMedicalB.Controllers.WeatherController",
+    "Method": "GetWeatherByCitySearhBarAsync",
+    "RelativePath": "api/Weather/city/bar/{name}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "name",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "IMedicalB.Controllers.WeatherController",
     "Method": "ConsultHistoryInfoAsync",
     "RelativePath": "api/Weather/consult",
     "HttpMethod": "POST",

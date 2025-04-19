@@ -34,8 +34,13 @@ namespace IMedical.F.Views
         /// </summary>
         protected global::System.Web.UI.WebControls.HiddenField HiddenCondition;
 
-        
+        /// <summary>
+        /// Control litHistorial.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.Literal litHistorial;
 
+        protected global::System.Web.UI.WebControls.Literal txtBuscarCiudad;
+        
 
     }
 }
