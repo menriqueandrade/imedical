@@ -60,6 +60,7 @@ Esto ejecutara un contenedor de SQL Server
 - **SQL Server** (vía Docker o local)
 - **Docker + Docker Compose**
 - **Serilog**
+- **Swagger**
 
 ---
 
