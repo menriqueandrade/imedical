@@ -1,11 +1,13 @@
 ﻿using IMedicalB.Model;
 using IMedicalB.Service;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace IMedicalB.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [EnableRateLimiting("fixed")]
     public class WeatherController : ControllerBase
     {
         private readonly IWeatherService _weatherService;

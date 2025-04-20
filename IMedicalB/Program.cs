@@ -1,10 +1,32 @@
+using System.Threading.RateLimiting;
 using IMedicalB.Model;
 using IMedicalB.Service;
 using IMedicalB.Sql;
-using Microsoft.OpenApi.Models;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+builder.Services.AddRateLimiter(options =>
+{
+    options.AddPolicy("fixed", context =>
+    {
+        var remoteIp = context.Connection.RemoteIpAddress?.ToString() ?? "unknown";
+
+        return RateLimitPartition.Get(remoteIp, _ =>
+        {
+            var limiterOptions = new FixedWindowRateLimiterOptions
+            {
+                PermitLimit = 30, // Máximo 5 solicitudes
+                Window = TimeSpan.FromSeconds(60), // Cada 10 segundos
+                QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                QueueLimit = 0
+            };
+
+            return new FixedWindowRateLimiter(limiterOptions); 
+        });
+    });
+});
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -40,6 +62,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseRateLimiter();
 
 app.UseAuthorization();
 
