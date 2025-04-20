@@ -4,7 +4,7 @@ Este repositorio contiene una solución con dos proyectos que trabajan en conjun
 
 - **IMedical.F (Frontend)**: Proyecto ASP.NET Web Forms (.NET Framework 4.7.2)
 - **IMedicalB (Backend)**: API ASP.NET Core (.NET 9.0)
-
+- **Swagger (Backend)**: [https://localhost:5001/swagger/index.html](https://localhost:5001/swagger/index.html)
 ---
 
 ## 📋 Requisitos Previos
@@ -12,7 +12,6 @@ Este repositorio contiene una solución con dos proyectos que trabajan en conjun
 - Visual Studio 2022 o superior
 - [.NET SDK 9.0](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
 - Docker Desktop (opcional pero recomendado si no tienes SQL Server instalado)
-
 ---
 
 ## ⚙️ Configuración y Ejecución
@@ -60,6 +59,8 @@ Esto ejecutara un contenedor de SQL Server
 - **ASP.NET Web Forms 4.7.2** (Frontend)
 - **SQL Server** (vía Docker o local)
 - **Docker + Docker Compose**
+- **Serilog**
+- **Swagger**
 
 ---
 
