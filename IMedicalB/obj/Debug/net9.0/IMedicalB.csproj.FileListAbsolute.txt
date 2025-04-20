@@ -66,7 +66,6 @@ C:\Users\manef\OneDrive\Desktop\imedical\IMedicalB\obj\Debug\net9.0\staticwebass
 C:\Users\manef\OneDrive\Desktop\imedical\IMedicalB\obj\Debug\net9.0\staticwebassets\msbuild.buildMultiTargeting.IMedicalB.props
 C:\Users\manef\OneDrive\Desktop\imedical\IMedicalB\obj\Debug\net9.0\staticwebassets\msbuild.buildTransitive.IMedicalB.props
 C:\Users\manef\OneDrive\Desktop\imedical\IMedicalB\obj\Debug\net9.0\staticwebassets.pack.json
-C:\Users\manef\OneDrive\Desktop\imedical\IMedicalB\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Users\manef\OneDrive\Desktop\imedical\IMedicalB\obj\Debug\net9.0\IMedicalB.csproj.Up2Date
 C:\Users\manef\OneDrive\Desktop\imedical\IMedicalB\obj\Debug\net9.0\IMedicalB.dll
 C:\Users\manef\OneDrive\Desktop\imedical\IMedicalB\obj\Debug\net9.0\refint\IMedicalB.dll
@@ -80,3 +79,14 @@ C:\Users\manef\OneDrive\Desktop\imedical\IMedicalB\bin\Debug\net9.0\runtimes\win
 C:\Users\manef\OneDrive\Desktop\imedical\IMedicalB\bin\Debug\net9.0\runtimes\win-x86\native\sni.dll
 C:\Users\manef\OneDrive\Desktop\imedical\IMedicalB\bin\Debug\net9.0\runtimes\unix\lib\net8.0\System.Data.SqlClient.dll
 C:\Users\manef\OneDrive\Desktop\imedical\IMedicalB\bin\Debug\net9.0\runtimes\win\lib\net8.0\System.Data.SqlClient.dll
+C:\Users\manef\OneDrive\Desktop\imedical\IMedicalB\bin\Debug\net9.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\manef\OneDrive\Desktop\imedical\IMedicalB\bin\Debug\net9.0\Serilog.dll
+C:\Users\manef\OneDrive\Desktop\imedical\IMedicalB\bin\Debug\net9.0\Serilog.AspNetCore.dll
+C:\Users\manef\OneDrive\Desktop\imedical\IMedicalB\bin\Debug\net9.0\Serilog.Extensions.Hosting.dll
+C:\Users\manef\OneDrive\Desktop\imedical\IMedicalB\bin\Debug\net9.0\Serilog.Extensions.Logging.dll
+C:\Users\manef\OneDrive\Desktop\imedical\IMedicalB\bin\Debug\net9.0\Serilog.Formatting.Compact.dll
+C:\Users\manef\OneDrive\Desktop\imedical\IMedicalB\bin\Debug\net9.0\Serilog.Settings.Configuration.dll
+C:\Users\manef\OneDrive\Desktop\imedical\IMedicalB\bin\Debug\net9.0\Serilog.Sinks.Console.dll
+C:\Users\manef\OneDrive\Desktop\imedical\IMedicalB\bin\Debug\net9.0\Serilog.Sinks.Debug.dll
+C:\Users\manef\OneDrive\Desktop\imedical\IMedicalB\bin\Debug\net9.0\Serilog.Sinks.File.dll
+C:\Users\manef\OneDrive\Desktop\imedical\IMedicalB\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

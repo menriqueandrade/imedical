@@ -17,7 +17,13 @@ builder.Services.AddHttpClient<IWeatherService, WeatherService>();
 builder.Services.AddScoped<ICityInfoService, CityInfoService>();
 builder.Services.Configure<ApiEndpoints>(builder.Configuration.GetSection("ApiEndpoints"));
 builder.Services.Configure<SqlQueries>(builder.Configuration.GetSection("SqlQueries"));
-
+builder.Services.AddCors(options => {
+    options.AddPolicy("AllowFrontend", policy => {
+        policy.WithOrigins("https://localhost:5001")
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
@@ -30,6 +36,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
     app.MapOpenApi();
+    app.UseCors("AllowFrontend");
 }
 
 app.UseHttpsRedirection();

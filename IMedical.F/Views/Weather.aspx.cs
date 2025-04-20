@@ -9,6 +9,7 @@ using IMedicalB.Dto;
 using System.Linq;
 using IMedical.F.Model;
 using System.Configuration;
+using System.Data.SqlClient;
 
 
 namespace IMedical.F.Views
@@ -21,6 +22,8 @@ namespace IMedical.F.Views
             {
                 RegisterAsyncTask(new PageAsyncTask(async () =>
                 {
+                    await InitializeDatabase();
+
                     var cities = await GetCitiesFromApi();
                     CityGrid.DataSource = cities;
                     CityGrid.DataBind();
@@ -57,23 +60,23 @@ namespace IMedical.F.Views
                 {
                     string url = ConfigurationManager.AppSettings["ApiUrl_Consult"];
                     client.Headers[HttpRequestHeader.ContentType] = "application/json";
-                    string body = "{}"; 
+                    string body = "{}";
 
                     var json = await client.UploadStringTaskAsync(url, "POST", body);
 
-                    
+
                     var response = JsonConvert.DeserializeObject<CityHistoryResponse>(json);
                     return response?.History ?? new List<CityHistoryDto>();
                 }
                 catch (WebException ex)
                 {
                     Console.WriteLine(ex.Message);
-                    return new List<CityHistoryDto>(); 
+                    return new List<CityHistoryDto>();
                 }
             }
         }
 
-     
+
         protected async void btnActualizar_Click(object sender, EventArgs e)
         {
             string ciudad = HiddenCity.Value;
@@ -152,7 +155,7 @@ namespace IMedical.F.Views
         protected void btnLimpiar_Click(object sender, EventArgs e)
         {
             txtBuscarCiudad.Text = string.Empty;
-            
+
             RegisterAsyncTask(new PageAsyncTask(async () =>
             {
                 var cities = await GetCitiesFromApi();
@@ -168,7 +171,7 @@ namespace IMedical.F.Views
                 client.Encoding = System.Text.Encoding.UTF8;
                 try
                 {
-                    
+
                     string ciudadCodificada = Uri.EscapeDataString(name);
                     string formato = ConfigurationManager.AppSettings["ApiUrl_SearchCity"];
                     string url = string.Format(formato, ciudadCodificada);
@@ -176,7 +179,7 @@ namespace IMedical.F.Views
                     var json = await client.DownloadStringTaskAsync(url);
                     var city = JsonConvert.DeserializeObject<CityInfo>(json);
 
-                    
+
                     return city != null ? new List<CityInfo> { city } : new List<CityInfo>();
                 }
                 catch (WebException ex)
@@ -199,6 +202,57 @@ namespace IMedical.F.Views
                 }
             }
         }
+
+
+        private async Task InitializeDatabase()
+        {
+            string connectionString = ConfigurationManager.AppSettings["Config_Bd"];
+
+            // Cadena de conexión al servidor (sin especificar base de datos inicial)
+            string masterConnectionString = new SqlConnectionStringBuilder(connectionString)
+            {
+                InitialCatalog = "master"
+            }.ToString();
+
+            using (var connection = new SqlConnection(masterConnectionString))
+            {
+                await connection.OpenAsync();
+
+                // Crear la base de datos si no existe
+                string createDbQuery = @"
+        IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = 'IMedical')
+        BEGIN
+            CREATE DATABASE IMedical;
+        END";
+
+                using (var command = new SqlCommand(createDbQuery, connection))
+                {
+                    await command.ExecuteNonQueryAsync();
+                }
+            }
+
+            // Ahora crear la tabla en la base de datos IMedical
+            using (var connection = new SqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+
+                string createTableQuery = @"
+        IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'weatherhistory' AND schema_id = SCHEMA_ID('dbo'))
+        BEGIN
+            CREATE TABLE weatherhistory (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    city NVARCHAR(100),
+    info NVARCHAR(100),
+    date_register DATETIME DEFAULT GETDATE()
+);
+        END";
+
+                using (var command = new SqlCommand(createTableQuery, connection))
+                {
+                    await command.ExecuteNonQueryAsync();
+                }
+            }
+        }
     }
 
-    }
+}
